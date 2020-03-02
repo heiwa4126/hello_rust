@@ -26,15 +26,18 @@ release_lnx:
 	zip -j ${BIN_NAME}-v${VERSION}-x86_64-lnx.zip target/x86_64-unknown-linux-musl/release/${BIN_NAME}
 
 release_ubuntu:
-	cargo build --release --target=x86_64-unknown-linux-gnu
+	# cargo build --release --target=x86_64-unknown-linux-gnu
+	cargo rustc --release --target=x86_64-unknown-linux-gnu -- -C opt-level=z -C lto -C link-args=-Wl,-x,-S
 	zip -j ${BIN_NAME}-v${VERSION}-x86_64-lnx.zip target/x86_64-unknown-linux-gnu/release/${BIN_NAME}
 
 release_win:
-	cargo build --release --target=x86_64-pc-windows-msvc
+	# cargo build --release --target=x86_64-pc-windows-msvc
+	cargo rustc --release --target=x86_64-pc-windows-msvc -- -C opt-level=z -C lto -C link-args=-Wl,-x,-S
 	7z a ${BIN_NAME}-v${VERSION}-x86_64-win.zip target/x86_64-pc-windows-msvc/release/${BIN_NAME}.exe
 
 release_mac:
-	cargo build --release --target=x86_64-apple-darwin
+	# cargo build --release --target=x86_64-apple-darwin
+	cargo rustc --release --target=x86_64-apple-darwin -- -C opt-level=z -C lto -C link-args=-Wl,-x,-S
 	zip -j ${BIN_NAME}-v${VERSION}-x86_64-mac.zip target/x86_64-apple-darwin/release/${BIN_NAME}
 
 release_rpm:
