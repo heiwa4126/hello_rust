@@ -4,7 +4,7 @@ BUILD_TIME = $(shell date +"%Y/%m/%d %H:%M:%S")
 GIT_REVISION = $(shell git log -1 --format="%h")
 RUST_VERSION = $(word 2, $(shell rustc -V))
 LONG_VERSION = "$(VERSION) ( rev: $(GIT_REVISION), rustc: $(RUST_VERSION), build at: $(BUILD_TIME) )"
-BIN_NAME = procs
+BIN_NAME = hello_rust
 
 export LONG_VERSION
 
@@ -24,6 +24,10 @@ clean:
 release_lnx:
 	cargo build --release --target=x86_64-unknown-linux-musl
 	zip -j ${BIN_NAME}-v${VERSION}-x86_64-lnx.zip target/x86_64-unknown-linux-musl/release/${BIN_NAME}
+
+release_ubuntu:
+	cargo build --release --target=x86_64-unknown-linux-gnu
+	zip -j ${BIN_NAME}-v${VERSION}-x86_64-lnx.zip target/x86_64-unknown-linux-gnu/release/${BIN_NAME}
 
 release_win:
 	cargo build --release --target=x86_64-pc-windows-msvc
