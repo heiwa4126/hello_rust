@@ -1,6 +1,7 @@
 # hello_rust
 
-Rust + GitHub Actionsの練習
+Rust + GitHub Actionsの練習。
+goreleaserのときみたいに、git tag & push --tagでGitHubのreleasesにビルドされたものがあがるようにする。
 
 
 # 参考
@@ -12,4 +13,8 @@ Rust + GitHub Actionsの練習
 
 # TODO
 
-- muslのGitHub Actionsが途中で落ちる謎を解く
+- muslのGitHub Actionsが途中で落ちる謎を解く(いまはglibにしてある)。たぶん3OS分が同時に動くから制限に引っかかるんだと思う。
+- tarball(zip)のバージョンがCargo.tomlから取っていて、tagと一致しないのをなんか考える。
+- Windows版のzipのディレクトリが深いのをなおす。
+- Linux版はzipよりtarがいいと思うので直す。
+- cargo-rpmやcargo-debが、Ubuntu1804LTSのパッケージ版のRustだとコンパイルに失敗するので(バージョンが古い)、あきらめてrustupインストールにする。
